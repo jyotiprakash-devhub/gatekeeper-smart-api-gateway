@@ -1,6 +1,6 @@
 package in.springboot.gatekeeper.management.controller;
 
-import in.springboot.gatekeeper.management.dto.responseDto.HealthResponse;
+import in.springboot.gatekeeper.management.dto.reponseDto.HealthResponse;
 import in.springboot.gatekeeper.management.service.HealthService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

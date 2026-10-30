@@ -1,4 +1,4 @@
-package in.springboot.gatekeeper.management.dto.responseDto;
+package in.springboot.gatekeeper.management.dto.reponseDto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

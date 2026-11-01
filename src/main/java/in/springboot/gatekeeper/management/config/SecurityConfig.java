@@ -28,7 +28,8 @@ public class SecurityConfig {
         http.csrf(csrf -> csrf.disable())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers("/health", "/api/auth/login").permitAll()
+                        .requestMatchers("/", "/index.html", "/styles.css", "/app.js", "/favicon.ico",
+                                "/health", "/api/auth/login").permitAll()
                         .requestMatchers("/api/platform/**").hasRole("PLATFORM_ADMIN")
                         .requestMatchers("/api/tenant/**").hasRole("TENANT_ADMIN")
                         .requestMatchers("/api/gateway/**").hasRole("GATEWAY_SERVICE")
@@ -47,15 +48,13 @@ public class SecurityConfig {
 
     @Bean
     public JwtEncoder jwtEncoder(@Value("${security.jwt.secret}") String secret) {
-        SecretKey secretKey = new SecretKeySpec(
-                secret.getBytes(StandardCharsets.UTF_8), "HmacSHA256");
+        SecretKey secretKey = new SecretKeySpec(secret.getBytes(StandardCharsets.UTF_8), "HmacSHA256");
         return NimbusJwtEncoder.withSecretKey(secretKey).algorithm(MacAlgorithm.HS256).build();
     }
 
     @Bean
     public JwtDecoder jwtDecoder(@Value("${security.jwt.secret}") String secret) {
-        SecretKey secretKey = new SecretKeySpec(
-                secret.getBytes(StandardCharsets.UTF_8), "HmacSHA256");
+        SecretKey secretKey = new SecretKeySpec(secret.getBytes(StandardCharsets.UTF_8), "HmacSHA256");
         return NimbusJwtDecoder.withSecretKey(secretKey).macAlgorithm(MacAlgorithm.HS256).build();
     }
 

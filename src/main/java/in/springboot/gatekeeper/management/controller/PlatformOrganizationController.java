@@ -26,7 +26,8 @@ public class PlatformOrganizationController {
     // CRUD --> organsiation
 
     @PostMapping
-    public ResponseEntity<OrganizationResponse> create(@Valid @RequestBody OrganizationRequest request) {
+    public ResponseEntity<OrganizationResponse> create(
+            @Valid @RequestBody OrganizationRequest request) {
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(organizationService.create(request));
     }
